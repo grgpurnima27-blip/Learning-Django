@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% include 'nav.html'%}
+
+    Welcome
+    {% for post in posts %}
+    <h2>Title : {{post.title}} </h2>
+    <h2> Discription : {{post.content}}</h2>
+    <h2>Prizes : {{post.prize}}</h2>
+    {% endfor %}
+    {% endblock body %}
+
+    
