@@ -1,13 +1,47 @@
-{% extends 'base.html' %}
-    {% block body %}
-    {% include 'nav.html'%}
-
-    Welcome
-    {% for post in posts %}
-    <h2>Title : {{post.title}} </h2>
-    <h2> Discription : {{post.content}}</h2>
-    <h2>Prizes : {{post.prize}}</h2>
-    {% endfor %}
-    {% endblock body %}
-
     
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'nav.html' %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Welcome to Django Blogging Page</h1>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-muted">
+                        {{ post.discription|truncatewords:20 }}
+                    </p>
+
+                    <div class="d-flex justify-content-between">
+                        <!-- View -->
+                        <a href=" {% url 'post' post.id %}" class="btn btn-primary btn-sm">
+                            View
+                        </a>
+
+                        <!-- Edit -->
+                        <a href="{% url 'edit' post.id %}" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <!-- Delete -->
+                        <a href="{% url 'delete' post.id%}" 
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this post?');">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No posts available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}
