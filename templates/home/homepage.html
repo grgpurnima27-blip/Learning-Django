@@ -28,6 +28,7 @@
             </a>
 
             <!-- Edit -->
+            {% if post.user == request.user %}
             <a href="{% url 'edit' post.id %}" class="btn btn-warning btn-sm">
               Edit
             </a>
@@ -42,6 +43,7 @@
             >
               Delete
             </a>
+            {% endif %}
           </div>
           {% endif %}
         </div>
