@@ -1,12 +1,13 @@
 from django import forms 
 from django.contrib.auth.models import User
+from .models import CustomUser
 class UserCreationForm(forms.ModelForm):
     password=forms.CharField(widget=forms.PasswordInput)
     confirm_password= forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model=User
-        fields=['username', 'email', 'password']
+        model=CustomUser
+        fields=['username','email','password','confirm_password','phone','Last_name','First_name']
 
         def clean(self): # from validation
             cleaned_data= super().clean()
